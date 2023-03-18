@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://cross_walk.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=26]
+extents = Vector2( 125.5, 219.5 )
+
+[node name="cross_walk_base" type="Area2D"]
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 26 )
+
+[connection signal="area_entered" from="." to="." method="_on_cross_walk_base_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_cross_walk_base_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_cross_walk_base_body_exited"]

@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://arts/traffic_lights/traffic_light_red.png" type="Texture" id=1]
+[ext_resource path="res://arts/traffic_lights/traffic_light_green.png" type="Texture" id=2]
+[ext_resource path="res://arts/traffic_lights/traffic_light_yellow 2.png" type="Texture" id=3]
+[ext_resource path="res://traffic_light.gd" type="Script" id=4]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "green_light",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "yellow_light",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "red_light",
+"speed": 5.0
+} ]
+
+[node name="traffic_light" type="Node2D"]
+z_index = 1
+script = ExtResource( 4 )
+red_time = 4
+yellow_time = 2
+green_time = 7
+
+[node name="lights" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "red_light"

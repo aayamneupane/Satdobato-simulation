@@ -1,0 +1,268 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://arts/bg_2.png" type="Texture" id=1]
+[ext_resource path="res://Main.gd" type="Script" id=2]
+[ext_resource path="res://cars.tscn" type="PackedScene" id=3]
+[ext_resource path="res://top_lane_1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://traffic_light.tscn" type="PackedScene" id=5]
+[ext_resource path="res://cross_walk.tscn" type="PackedScene" id=6]
+[ext_resource path="res://pedestrian.tscn" type="PackedScene" id=7]
+[ext_resource path="res://pedestrian_spawn_location.tscn" type="PackedScene" id=8]
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -221, -110 )
+}
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 351, -53.6869, 1.03576, 53.6869, -1.03576, 809, 350, -0.172627, 33.3169, 0.172627, -33.3169, 862, 317, 0, 0, 0, 0, 862, -182 )
+}
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1, 392, 0, 0, 0, 0, 2142, 394 )
+}
+
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 467, 0, 0, 0, 0, 2172, 467 )
+}
+
+[sub_resource type="Curve2D" id=5]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 504, 0, 0, 0, 0, 2219, 516 )
+}
+
+[sub_resource type="Curve2D" id=6]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1074, 0, -0.490196, -65.1961, 0.490196, 65.1961, 1073, 290, -33.3333, 0, 33.3333, 0, 1103, 357, 0, 0, 0, 0, 2162, 358 )
+}
+
+[sub_resource type="Curve2D" id=7]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1002, 1, 0, 0, 0, 0, 1002, 1322 )
+}
+
+[sub_resource type="Curve2D" id=8]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1920, 575, 0, 0, 0, 0, -160, 575 )
+}
+
+[sub_resource type="Curve2D" id=9]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1921, 618, 0, 0, 0, 0, -182, 618 )
+}
+
+[sub_resource type="Curve2D" id=10]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1922, 685, 0, 0, 0, 0, -262, 685 )
+}
+
+[sub_resource type="Curve2D" id=11]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 914, 1080, -0.104347, 50.817, 0.104347, -50.817, 914, 781, 33.4954, -0.208694, -33.4954, 0.208694, 886, 729, 0, 0, 0, 0, -151, 728 )
+}
+
+[sub_resource type="Curve2D" id=12]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1920, 732, 48.627, -1.20705, -48.627, 1.20705, 1033, 731, 1.20705, -43.4539, -1.20705, 43.4539, 986, 770, 0, 0, 0, 0, 985, 1353 )
+}
+
+[node name="Main" type="Node2D"]
+position = Vector2( 1, -6 )
+script = ExtResource( 2 )
+car_scene = ExtResource( 3 )
+pedestrian_scene = ExtResource( 7 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="top_lane_1" parent="." instance=ExtResource( 4 )]
+lane_name = "top_lane_1"
+initial_rotation = 90
+path_index = 6
+
+[node name="top_lane_2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1074, 0 )
+lane_name = "top_lane_2"
+initial_rotation = 90
+path_index = 5
+
+[node name="left_lane_1" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, 350 )
+lane_name = "left_lane_1"
+path_index = 1
+
+[node name="left_lane_2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, 397 )
+lane_name = "left_lane_2"
+path_index = 2
+
+[node name="left_lane_3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, 467 )
+lane_name = "left_lane_3"
+path_index = 3
+
+[node name="left_lane_4" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, 504 )
+lane_name = "left_lane_4"
+path_index = 4
+
+[node name="right_lane_1" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1920, 575 )
+lane_name = "right_lane_1"
+initial_rotation = 180
+path_index = 7
+
+[node name="right_lane_2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1920, 616 )
+lane_name = "right_lane_2"
+initial_rotation = 180
+path_index = 8
+
+[node name="right_lane_3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1920, 682 )
+lane_name = "right_lane_3"
+initial_rotation = 180
+path_index = 9
+
+[node name="right_lane_4" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1920, 732 )
+lane_name = "right_lane_4"
+initial_rotation = 180
+path_index = 11
+
+[node name="bottom_lane" parent="." instance=ExtResource( 4 )]
+position = Vector2( 914, 1080 )
+lane_name = "bottom_lane"
+initial_rotation = 270
+path_index = 10
+
+[node name="left_cross_walk" parent="." instance=ExtResource( 6 )]
+position = Vector2( 685, 546 )
+scale = Vector2( 0.842214, 1.09761 )
+
+[node name="top_cross_walk" parent="." instance=ExtResource( 6 )]
+position = Vector2( 958, 211 )
+rotation = 1.5708
+scale = Vector2( 0.682942, 0.796446 )
+traffic_light_allocation = 1
+
+[node name="right_cross_walk" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1248, 542 )
+scale = Vector2( 0.799981, 1.16 )
+traffic_light_allocation = 2
+
+[node name="bottom_cross_walk" parent="." instance=ExtResource( 6 )]
+position = Vector2( 957, 888 )
+rotation = 1.5708
+scale = Vector2( 0.538154, 0.523763 )
+traffic_light_allocation = 3
+
+[node name="traffic_light_left" parent="." instance=ExtResource( 5 )]
+position = Vector2( 813, 378 )
+scale = Vector2( 0.15, 0.15 )
+red_time = 6
+green_time = 15
+
+[node name="traffic_light_up" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1052, 306 )
+rotation = 1.5708
+scale = Vector2( 0.15, 0.15 )
+allocation = 1
+red_time = 6
+green_time = 15
+
+[node name="traffic_light_right" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1085, 699 )
+scale = Vector2( 0.15, 0.15 )
+allocation = 2
+red_time = 6
+green_time = 15
+
+[node name="traffic_light_down" parent="." instance=ExtResource( 5 )]
+position = Vector2( 915, 781 )
+rotation = 1.5708
+scale = Vector2( 0.15, 0.15 )
+allocation = 3
+red_time = 6
+green_time = 15
+
+[node name="light_timer" type="Timer" parent="."]
+
+[node name="pedestrian_spawn_location" parent="." instance=ExtResource( 8 )]
+position = Vector2( 663, 1080 )
+pedestrian_move_direction = Vector2( 0, -1 )
+
+[node name="pedestrian_spawn_location2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 719, 1 )
+pedestrian_move_direction = Vector2( 0, 1 )
+
+[node name="pedestrian_spawn_location3" parent="." instance=ExtResource( 8 )]
+position = Vector2( 471, 182 )
+pedestrian_move_direction = Vector2( 1, 0 )
+
+[node name="pedestrian_spawn_location4" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1551, 230 )
+pedestrian_move_direction = Vector2( -1, 0 )
+
+[node name="pedestrian_spawn_location5" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1295, 6 )
+pedestrian_move_direction = Vector2( 0, 1 )
+
+[node name="pedestrian_spawn_location6" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1207, 982 )
+pedestrian_move_direction = Vector2( 0, -1 )
+
+[node name="pedestrian_spawn_location7" parent="." instance=ExtResource( 8 )]
+position = Vector2( 567, 862 )
+pedestrian_move_direction = Vector2( 1, 0 )
+
+[node name="pedestrian_spawn_location8" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1920, 902 )
+pedestrian_move_direction = Vector2( -1, 0 )
+
+[node name="path_0" type="Path2D" parent="."]
+curve = SubResource( 2 )
+
+[node name="path_1" type="Path2D" parent="."]
+curve = SubResource( 1 )
+
+[node name="path_2" type="Path2D" parent="."]
+position = Vector2( -1, 5 )
+curve = SubResource( 3 )
+
+[node name="path_3" type="Path2D" parent="."]
+curve = SubResource( 4 )
+
+[node name="path_4" type="Path2D" parent="."]
+curve = SubResource( 5 )
+
+[node name="path_5" type="Path2D" parent="."]
+curve = SubResource( 6 )
+
+[node name="path_6" type="Path2D" parent="."]
+curve = SubResource( 7 )
+
+[node name="path_7" type="Path2D" parent="."]
+curve = SubResource( 8 )
+
+[node name="path_8" type="Path2D" parent="."]
+curve = SubResource( 9 )
+
+[node name="path_9" type="Path2D" parent="."]
+curve = SubResource( 10 )
+
+[node name="path_10" type="Path2D" parent="."]
+curve = SubResource( 11 )
+
+[node name="path_11" type="Path2D" parent="."]
+curve = SubResource( 12 )
+
+[connection signal="timeout" from="light_timer" to="." method="_on_light_timer_timeout"]

@@ -1,0 +1,88 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://pedestrian.gd" type="Script" id=1]
+[ext_resource path="res://arts/pedestrians/blonde_girl_pos_2.png" type="Texture" id=3]
+[ext_resource path="res://arts/pedestrians/blonde_girl_pos_3.png" type="Texture" id=4]
+[ext_resource path="res://arts/pedestrians/blonde_girl_pos_1.png" type="Texture" id=5]
+[ext_resource path="res://arts/pedestrians/carrier_man_pos_1.png" type="Texture" id=6]
+[ext_resource path="res://arts/pedestrians/phone_man_pos_1.png" type="Texture" id=7]
+[ext_resource path="res://arts/pedestrians/carrier_man_pos_3.png" type="Texture" id=8]
+[ext_resource path="res://arts/pedestrians/carrier_man_pos_2.png" type="Texture" id=9]
+[ext_resource path="res://arts/pedestrians/phone_man_pos_2.png" type="Texture" id=10]
+[ext_resource path="res://arts/pedestrians/phone_man_pos_3.png" type="Texture" id=11]
+[ext_resource path="res://arts/pedestrians/blue_man_pos_1.png" type="Texture" id=12]
+[ext_resource path="res://arts/pedestrians/blue_man_pos_1 2.png" type="Texture" id=13]
+[ext_resource path="res://arts/pedestrians/blue_man_pos_2 2.png" type="Texture" id=14]
+[ext_resource path="res://arts/pedestrians/blue_man_pos_3 2.png" type="Texture" id=15]
+[ext_resource path="res://arts/pedestrians/blue_man_pos_2.png" type="Texture" id=16]
+[ext_resource path="res://arts/pedestrians/blue_man_pos_3.png" type="Texture" id=17]
+[ext_resource path="res://arts/pedestrians/green_man_pos_2.png" type="Texture" id=18]
+[ext_resource path="res://arts/pedestrians/green_man_pos_1.png" type="Texture" id=19]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "phone_man",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 16 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "blue_man_2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "green_man",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "blonde_girl",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 9 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "carrier_man",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "blue_man",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 53.3333
+height = 0.0
+
+[node name="pedestrian" type="KinematicBody2D" groups=["pedestrians"]]
+collision_mask = 0
+script = ExtResource( 1 )
+
+[node name="people" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.2, 0.2 )
+frames = SubResource( 2 )
+animation = "green_man"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 0.2, 0.2 )
+shape = SubResource( 1 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="detector" type="Area2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="detector"]
+position = Vector2( 0, 2 )
+polygon = PoolVector2Array( -8, -24, 8, -24, 16, -58, -16, -58 )
+
+[node name="stuck_timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="viewport_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]
+[connection signal="body_entered" from="detector" to="." method="_on_detector_body_entered"]
+[connection signal="body_exited" from="detector" to="." method="_on_detector_body_exited"]
+[connection signal="timeout" from="stuck_timer" to="." method="_on_stuck_timer_timeout"]

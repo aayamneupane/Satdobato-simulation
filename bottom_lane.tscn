@@ -1,0 +1,4 @@
+[gd_scene format=2]
+
+[node name="bottom_lane" type="Position2D"]
+position = Vector2( 911, 1080 )
